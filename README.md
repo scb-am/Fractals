@@ -4,4 +4,4 @@ Welcome to the Chaos Game. The game is played with three coloured points in a tr
 Constructing and colouring points in this way gradually makes a pattern inside the triangle. Can you guess what this pattern will be?
 
 In settings.py you can edit start_point end triangle_points coordinates. <br/>
-Run main.py to start Chaos Game.
+Install Tkinter and run main.py to start Chaos Game.
