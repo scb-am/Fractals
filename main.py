@@ -5,6 +5,40 @@ from tkinter import *
 import settings as s
 
 
+class FractalsApp(Tk):
+    def __init__(self):
+        Tk.__init__(self)
+        self.__run_app()
+
+    def __run_app(self):
+        self.canvas = Canvas(self, width=s.CANVAS_WIDTH, height=s.CANVAS_HEIGHT, bg="white", cursor="cross")
+        self.__point_number = 0
+        self.__color_selector = {
+            1: 'red',
+            2: 'green',
+            3: 'blue',
+        }
+        self.__point_list = []
+        self.button_clear = Button(self, text="Clear", command=self.__clear_all)
+        self.button_clear.pack(side="bottom", fill="both", expand=True)
+        self.canvas.bind("<Button-1>", self.__create_point)
+        self.canvas.pack()
+
+    def __clear_all(self):
+        self.canvas.delete("all")
+
+    def __create_point(self, event):
+        self.__point_number += 1
+        self.__point_list.append(Point(event.x, event.y, 5, self.canvas, self.__color_selector[self.__point_number]))
+        if self.__point_number >= 3:
+            self.__run_timer()
+
+    def __run_timer(self):
+        self.point1, self.point2, self.point3 = self.__point_list
+        self.timer = Timer(s.START_POINT_X, s.START_POINT_Y, self.canvas, point_1=self.point1,
+                           point_2=self.point2, point_3=self.point3)
+
+
 class PointAttributes:
     def __init__(self, r=None, canvas=None, color=None):
         self.r = r
@@ -58,7 +92,8 @@ class NextPoint(PointAttributes):
 
 
 class Timer:
-    def __init__(self, x, y, canvas):
+    def __init__(self, x, y, canvas, **kwargs):
+        self.__dict__.update(kwargs)
         self.x = x
         self.y = y
         self.canvas = canvas
@@ -72,9 +107,9 @@ class Timer:
     def refresh_canvas(self):
         """ refresh the content of the canvas """
         selector = {
-            1: self.create_next_point(point_1),
-            2: self.create_next_point(point_2),
-            3: self.create_next_point(point_3),
+            1: self.create_next_point(self.point_1),
+            2: self.create_next_point(self.point_2),
+            3: self.create_next_point(self.point_3),
         }
         random_num = random.randint(1, 3)
         self.point = selector[random_num]
@@ -83,13 +118,5 @@ class Timer:
 
 
 if __name__ == '__main__':
-    root = Tk()
-    canvas = Canvas(root, width=s.CANVAS_WIDTH, height=s.CANVAS_HEIGHT)
-
-    point_1 = Point(s.POINT_1_X, s.POINT_1_Y, 5, canvas, 'red')
-    point_2 = Point(s.POINT_2_X, s.POINT_2_Y, 5, canvas, 'green')
-    point_3 = Point(s.POINT_3_X, s.POINT_3_Y, 5, canvas, 'blue')
-
-    timer = Timer(s.START_POINT_X, s.START_POINT_Y, canvas)
-
-    root.mainloop()
+    app = FractalsApp()
+    app.mainloop()
