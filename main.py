@@ -21,11 +21,21 @@ class FractalsApp(Tk):
         self.__point_list = []
         self.button_clear = Button(self, text="Clear", command=self.__clear_all)
         self.button_clear.pack(side="bottom", fill="both", expand=True)
+        self.button_pause = Button(self, text="Pause", command=self.__pause)
+        self.button_pause.pack(side="bottom", fill="both", expand=True)
+        self.button_play = Button(self, text="Play", command=self.__play)
+        self.button_play.pack(side="bottom", fill="both", expand=True)
         self.canvas.bind("<Button-1>", self.__create_point)
         self.canvas.pack()
 
     def __clear_all(self):
         self.canvas.delete("all")
+
+    def __pause(self):
+        self.timer.pause()
+
+    def __play(self):
+        self.timer.play()
 
     def __create_point(self, event):
         self.__point_number += 1
@@ -40,6 +50,7 @@ class FractalsApp(Tk):
         self.point1, self.point2, self.point3 = self.__point_list
         self.timer = Timer(self.__start_point_x, self.__start_point_y, self.canvas, point_1=self.point1,
                            point_2=self.point2, point_3=self.point3)
+        self.timer.run()
 
 
 class PointAttributes:
@@ -97,12 +108,22 @@ class NextPoint(PointAttributes):
 class Timer:
     def __init__(self, x, y, canvas, **kwargs):
         self.__dict__.update(kwargs)
+        self.delay = 10
         self.x = x
         self.y = y
         self.canvas = canvas
-        self.point = Point(x, y)
+
+    def run(self):
+        self.point = Point(self.x, self.y)
         self.canvas.pack()
-        self.canvas.after(10, self.refresh_canvas)
+        self.canvas.after(self.delay, self.refresh_canvas)
+
+    def pause(self):
+        self.delay = 10000000000
+
+    def play(self):
+        self.delay = 10
+        self.refresh_canvas()
 
     def create_next_point(self, target_point):
         return NextPoint(self.point, target_point, 0, self.canvas, None).next_point_coordinates
@@ -117,7 +138,7 @@ class Timer:
         random_num = random.randint(1, 3)
         self.point = selector[random_num]
         print(f'x: {self.point.x_coordinate}, y: {self.point.y_coordinate}')
-        self.canvas.after(10, self.refresh_canvas)
+        self.canvas.after(self.delay, self.refresh_canvas)
 
 
 if __name__ == '__main__':
