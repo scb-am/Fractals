@@ -29,13 +29,16 @@ class FractalsApp(Tk):
 
     def __create_point(self, event):
         self.__point_number += 1
-        self.__point_list.append(Point(event.x, event.y, 5, self.canvas, self.__color_selector[self.__point_number]))
-        if self.__point_number >= 3:
+        if self.__point_number <= 3:
+            self.__point_list.append(Point(event.x, event.y, 5, self.canvas, self.__color_selector[self.__point_number]))
+        else:
+            self.__start_point_x, self.__start_point_y = event.x, event.y
+            Point(self.__start_point_x, self.__start_point_y, 0, self.canvas, None)
             self.__run_timer()
 
     def __run_timer(self):
         self.point1, self.point2, self.point3 = self.__point_list
-        self.timer = Timer(s.START_POINT_X, s.START_POINT_Y, self.canvas, point_1=self.point1,
+        self.timer = Timer(self.__start_point_x, self.__start_point_y, self.canvas, point_1=self.point1,
                            point_2=self.point2, point_3=self.point3)
 
 
