@@ -21,9 +21,7 @@ class FractalsApp(Tk):
         self.__point_list = []
         self.button_clear = Button(self, text="Clear", command=self.__clear_all)
         self.button_clear.pack(side="bottom", fill="both", expand=True)
-        self.button_pause = Button(self, text="Pause", command=self.__pause)
-        self.button_pause.pack(side="bottom", fill="both", expand=True)
-        self.button_play = Button(self, text="Play", command=self.__play)
+        self.button_play = Button(self, text="Play", command=self.__play, state=DISABLED)
         self.button_play.pack(side="bottom", fill="both", expand=True)
         self.canvas.bind("<Button-1>", self.__create_point)
         self.canvas.pack()
@@ -33,9 +31,19 @@ class FractalsApp(Tk):
 
     def __pause(self):
         self.timer.pause()
+        self.__state = 'pause'
+        self.__change_button()
 
     def __play(self):
         self.timer.play()
+        self.__state = 'play'
+        self.__change_button()
+
+    def __change_button(self):
+        if self.__state == 'play':
+            self.button_play.config(text="Pause", state=NORMAL, command=self.__pause)
+        else:
+            self.button_play.config(text="Play", state=NORMAL, command=self.__play)
 
     def __create_point(self, event):
         self.__point_number += 1
@@ -50,6 +58,8 @@ class FractalsApp(Tk):
         self.point1, self.point2, self.point3 = self.__point_list
         self.timer = Timer(self.__start_point_x, self.__start_point_y, self.canvas, point_1=self.point1,
                            point_2=self.point2, point_3=self.point3)
+        self.__state = 'play'
+        self.__change_button()
         self.timer.run()
 
 
