@@ -152,7 +152,11 @@ class Cross_circle_vs_lines_points():
 
 def check_cross_point(room, cross_point):
     if room.point1_x_coordinate <= cross_point.x_coordinate <= room.point2_x_coordinate and \
-        room.point1_y_coordinate <= cross_point.y_coordinate <= room.point2_y_coordinate:
+        room.point1_y_coordinate <= cross_point.y_coordinate <= room.point2_y_coordinateand and \
+        [cross_point.x_coordinate, cross_point.y_coordinate] != [room.point1_x_coordinate, room.point1_y_coordinate] and \
+        [cross_point.x_coordinate, cross_point.y_coordinate] != [room.point1_x_coordinate, room.point2_y_coordinate] and \
+        [cross_point.x_coordinate, cross_point.y_coordinate] != [room.point2_x_coordinate, room.point1_y_coordinate] and \
+        [cross_point.x_coordinate, cross_point.y_coordinate] != [room.point2_x_coordinate, room.point2_y_coordinate]:
         return cross_point
 
 def check_is_cross_point_in_sensor(cross_point, sensor):
