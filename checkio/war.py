@@ -35,9 +35,10 @@ class Battle():
                 army2.army.pop()
             else:
                 army1.army.pop()
-        if army1.army:
-            return True
-        return False
+        return len(army2.army) == 0
+        # if army1.army:
+        #     return True
+        # return False
 
 
 
