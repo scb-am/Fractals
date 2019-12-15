@@ -39,3 +39,44 @@ print(magician('J ♦', 'A ♥', 'Q ♣', 'K ♠', n=1))
 
 print('d - ', bot('10 ♥', 'J ♥', 'Q ♥', 'K ♥', 'A ♥', n=4))
 print(magician('Q ♥', 'K ♥', 'J ♥', '10 ♥', n=4))
+
+
+# RANKS = 'A 2 3 4 5 6 7 8 9 10 J Q K'.split()
+# SUITS = '♣♦♥♠'
+#
+# RANK = slice(-2)
+# SUIT = -1
+#
+# def card_order(card):
+#     return RANKS.index(card[RANK]), SUITS.index(card[SUIT])
+#
+# def bot(*cards, n=1):
+#     """Determine four cards the bot has to say to the magician."""
+#     suits = [c[SUIT] for c in cards]
+#     same_suit = max(suits, key=suits.count)
+#     keep, hide = [c for c in cards if c[SUIT] == same_suit][:2]
+#     distance = (RANKS.index(hide[RANK]) - RANKS.index(keep[RANK]) + 13) % 13
+#     if distance > 6:
+#         keep, hide, distance = hide, keep, 13 - distance
+#     C1, C2, C3 = sorted((c for c in cards if keep != c != hide), key=card_order)
+#     result = {1: [C3, C1, C2], 2: [C3, C2, C1], 3: [C2, C1, C3],
+#               4: [C2, C3, C1], 5: [C1, C2, C3], 6: [C1, C3, C2]}[distance]
+#     result.insert((n - 1) % 4, keep)
+#     return result
+#
+# def magician(*cards, n=1):
+#     """Determine the fifth card with only four cards."""
+#     cards = list(cards)
+#     keep = cards.pop((n - 1) % 4)
+#     sorted_cards = sorted(cards, key=card_order)
+#     distance = (5, 3, 1)[sorted_cards.index(cards[0])]
+#     distance += card_order(cards[1]) > card_order(cards[2])
+#     return f'{RANKS[(RANKS.index(keep[RANK]) + distance) % 13]} {keep[SUIT]}'
+#
+#
+# if __name__ == '__main__':
+#     assert list(bot('A ♥', '3 ♦', 'K ♠', 'Q ♣', 'J ♦')) == ['J ♦', 'A ♥', 'Q ♣', 'K ♠']
+#     assert magician('J ♦', 'A ♥', 'Q ♣', 'K ♠') == '3 ♦'
+#
+#     assert list(bot('10 ♦', 'J ♣', 'Q ♠', 'K ♥', '7 ♦', n=2)) == ['Q ♠', '7 ♦', 'J ♣', 'K ♥']
+#     assert magician('Q ♠', '7 ♦', 'J ♣', 'K ♥', n=2) == '10 ♦'
