@@ -15,6 +15,7 @@ MORSE = {'a': '.-',    'b': '-...',  'c': '-.-.',
 def morse_encoder(text):
     return ' '.join([MORSE[x.lower()] if x != ' ' else ' ' for x in text])
     # return " ".join(map(lambda c: MORSE[c], text.lower()))
+    # return ' '.join(D.get(c, ' ') for c in text.lower())
 
 
 
