@@ -152,7 +152,7 @@ class Cross_circle_vs_lines_points():
 
 def check_cross_point(room, cross_point):
     if room.point1_x_coordinate <= cross_point.x_coordinate <= room.point2_x_coordinate and \
-        room.point1_y_coordinate <= cross_point.y_coordinate <= room.point2_y_coordinateand and \
+        room.point1_y_coordinate <= cross_point.y_coordinate <= room.point2_y_coordinate and \
         [cross_point.x_coordinate, cross_point.y_coordinate] != [room.point1_x_coordinate, room.point1_y_coordinate] and \
         [cross_point.x_coordinate, cross_point.y_coordinate] != [room.point1_x_coordinate, room.point2_y_coordinate] and \
         [cross_point.x_coordinate, cross_point.y_coordinate] != [room.point2_x_coordinate, room.point1_y_coordinate] and \
@@ -221,4 +221,6 @@ print(is_covered([200, 150], [[100, 75, 10], [100, 75, 130]]))   #True
 print(is_covered([200, 150], [[100, 75, 130]]))   #True
 print(is_covered([200, 150], [[50, 75, 100], [150, 75, 100]]))   #True
 print(is_covered([200, 150], [[50, 75, 100], [150, 25, 50], [150, 125, 50]]))   #False
+print(is_covered([1, 1], [[0, 0, 0], [0, 1, 0], [1, 0, 0], [1, 1, 0]]))   #False
+print(is_covered([4, 3], [[0, 0, 1], [2, 0, 1], [4, 0, 1], [0, 3, 1], [2, 3, 1], [4, 3, 1], [1, 1, 1], [1, 2, 1], [2, 1, 1], [2, 2, 1]]))   #False
 
