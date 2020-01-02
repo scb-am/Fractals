@@ -44,3 +44,22 @@ print(john.show_invite()) #"Midnight Pub: Saturday, 10:00 AM"
 print(lucy.show_invite()) #"Midnight Pub: Saturday, 10:00 AM"
 print(nick.show_invite()) #"Midnight Pub: Friday, 9:00 PM"
 print(chuck.show_invite()) #"No party..."
+
+
+# class Named:
+#     def __init__(self, name):
+#         self.name = name
+#
+#
+# class Friend(Named):
+#     invitation = 'No party...'
+#
+#     def show_invite(self):
+#         return self.invitation
+#
+#
+# class Party(Named, list):
+#     add_friend, del_friend = list.append, list.remove
+#
+#     def send_invites(self, time):
+#         for f in self: f.invitation = f'{self.name}: {time}'
