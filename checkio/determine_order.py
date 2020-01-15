@@ -53,3 +53,13 @@ def checkio(data):
 # checkio(["aazzss"])# == "azs"
 # checkio(["dfg", "frt", "tyg"])# == "dfrtyg"
 checkio(["jhgedba","jihcba","jigfdca"])# == "jihgefdcba"
+
+
+# def checkio(groups):
+#     out, chars = "", ''.join(sorted(set(''.join(groups))))
+#     while chars:
+#         for i in chars:
+#             if all([x.find(i) in [-1, 0] for x in groups]):
+#                 groups = [x.replace(i, '') for x in groups]
+#                 out, chars = out+i, chars.replace(i, '')
+#     return out
