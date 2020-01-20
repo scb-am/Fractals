@@ -23,3 +23,11 @@ print(type(davasaan(1_123_456_789)))
 
 
 
+
+# V=vars()
+# S=str(V)
+# davasaan=lambda x:V[S[2:14]][S[4506:4512]](x,10)[0]
+
+
+
+# davasaan=d=lambda x:x and((x>>1)%10>4)|d(x>>1)<<1
