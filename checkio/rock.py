@@ -31,3 +31,11 @@ print(type(davasaan(1_123_456_789)))
 
 
 # davasaan=d=lambda x:x and((x>>1)%10>4)|d(x>>1)<<1
+
+
+# davasaan = lambda n: [n := n + 5 - n % 10,
+#                       q := (n >> 1) + (n >> 2),
+#                       q := q + (q >> 4),
+#                       q := q + (q >> 8),
+#                       q := q + (q >> 16),
+#                       q >> 3][-1]
