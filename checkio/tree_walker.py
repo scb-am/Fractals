@@ -52,6 +52,10 @@
 #            sum(tree_walker(n, target) for n in _tree) or tree == target
 
 
+# def tree_walker(tree, target, re=__import__('re')):
+#     return len(re.findall('(?! :)%s[,\]\}]' % re.escape(str([target])[1:-1]), f'{tree},'))
+
+
 tree_walker = lambda tree, target: tree != target and isinstance(list(tree.values()) if isinstance(tree, dict) else tree, list) and sum(tree_walker(n, target) for n in (list(tree.values()) if isinstance(tree, dict) else tree)) or tree == target
 
 
