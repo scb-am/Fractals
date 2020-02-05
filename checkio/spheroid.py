@@ -31,6 +31,38 @@ checkio=lambda height,width:{
     ])(width)
 }[True]
 
+# Using formulas from http://en.wikipedia.org/wiki/Spheroid
+
+# from math import pi, asin, atanh
+#
+#
+# def checkio(height, width):
+#     """
+#     Calculate the volume and the surface area for the spheroid.
+#
+#     Args:
+#         height: spheroid's height.
+#         width: spheroid's width.
+#     Returns:
+#         the list with the volume and the surface area. Rounded at two digits.
+#     """
+#     a, c = width / 2, height / 2
+#     volume = (4 / 3) * pi * c * (a ** 2)
+#
+#     # prolate
+#     if a < c:
+#         e = (1 - a ** 2 / c ** 2) ** 0.5
+#         area = 2 * pi * a ** 2 * (1 + asin(e) * c / (a * e))
+#     # oblate
+#     elif a > c:
+#         e = (1 - c ** 2 / a ** 2) ** 0.5
+#         area = 2 * pi * a ** 2 * (1 + atanh(e) * (1 - e ** 2) / e)
+#     # sphere
+#     else:
+#         area = 4 * pi * a ** 2
+#
+#     return [round(volume, 2), round(area, 2)]
+
 
 print(checkio(4, 2))
 print(checkio(2, 2))
