@@ -69,3 +69,8 @@ def checkio(x, y):
 
 
 checkio(20, 82)
+
+
+# def checkio(first, second):
+#     first = format(first, 'b')
+#     return 2 * (second * first.count('0') + ((1 << second.bit_length()) - 1) * first.count('1'))
