@@ -33,10 +33,30 @@ if __name__ == '__main__':
     assert bigger_together([100]) == 0, "100 - 100"
     print('Done! I feel like you good enough to click Check')
 
-    
+"""**********************************************************************************************"""
 
 def bigger_together(ints):
     strs = [str(n) for n in ints]
     list_ = sorted(strs, key=cmp_to_key(lambda a, b: int(a+b) - int(b+a)))
 
     return int(''.join(list_[::-1])) - int(''.join(list_))
+
+"""**********************************************************************************************"""
+
+
+def bigger_together(ints):
+    """
+        Returns difference between the largest and smallest values
+        that can be obtained by concatenating the integers together.
+    """
+    numbers = list(map(str, ints))
+    max_len = max(map(len, numbers))
+
+    def pad(s):
+        return ''.join(s[i % len(s)] for i in range(max_len))
+    
+    def extremum(is_maximum):
+        s_numbers = sorted(numbers, key = pad, reverse=is_maximum)
+        return int(''.join(s_numbers))
+
+    return extremum(True) - extremum(False)
