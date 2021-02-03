@@ -32,3 +32,11 @@ if __name__ == '__main__':
     assert bigger_together([0, 1]) == 9, "10 - 01"
     assert bigger_together([100]) == 0, "100 - 100"
     print('Done! I feel like you good enough to click Check')
+
+    
+
+def bigger_together(ints):
+    strs = [str(n) for n in ints]
+    list_ = sorted(strs, key=cmp_to_key(lambda a, b: int(a+b) - int(b+a)))
+
+    return int(''.join(list_[::-1])) - int(''.join(list_))
