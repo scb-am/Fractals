@@ -60,3 +60,19 @@ def bigger_together(ints):
         return int(''.join(s_numbers))
 
     return extremum(True) - extremum(False)
+
+"""**********************************************************************************************"""
+
+
+def bigger_together(ints):
+    class NumStr(str): __lt__ = lambda x, y: x+y < y+x
+    order = sorted(map(NumStr, ints))
+    return int(''.join(reversed(order))) - int(''.join(order))
+
+
+"""****************************************VV*HACK*VV**********************************************"""
+
+
+def bigger_together(ints):
+    S = sorted(map(str, ints), key=lambda s: s * 99)
+    return int(''.join(S[::-1])) - int(''.join(S))
