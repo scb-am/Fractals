@@ -40,6 +40,46 @@ def chess_knight(start, moves):
     knight = Knight(start, moves)
     return knight.get_cells()
 
+
+# def chess_knight(p, l):
+#     m = ((2, 1), (1, 2), (2, -1), (1, -2), (-2, 1), (-1, 2), (-2, -1), (-1, -2))
+#     r = []
+#     px, py = map(ord, p)
+#     for dx, dy in m:
+#         x, y = chr(px + dx), chr(py + dy)
+#         if 'a' <= x <= 'h' and '1' <= y <= '8':
+#             r.append(x + y)
+#             if l > 1:
+#                 r += chess_knight(x + y, l - 1)
+#     return sorted(set(r))
+
+
+# STEPS = (1, 2), (2, 1), (2, -1), (1, -2), (-1, -2), (-2, -1), (-2, 1), (-1, 2)
+# VALID = {x+y for x in 'abcdefgh' for y in '12345678'}
+#
+# def chess_knight(start, num_of_moves):
+#     stack, result = [(num_of_moves, start)], []
+#     while stack:
+#         move, last = stack.pop()
+#         result += [last]*(move < num_of_moves)
+#         if not move: continue
+#         x, y = map(ord, last)
+#         new = {chr(x+i)+chr(y+j) for i, j in STEPS}
+#         stack += [(move-1, x) for x in new & VALID]
+#     return sorted(set(result))
+
+
+# def chess_knight(start, moves):
+#     if not moves: return []
+#     if type(start) == str: start=[start]
+#     c = []
+#     for k in start:
+#         a, b = ord(k[0]), int(k[1])
+#         c += [ chr(a+i)+str(b+j) for i in (-2,2) for j in (-1,1) if 105>a+i>96 and 9>b+j>0]
+#         c += [ chr(a+j)+str(b+i) for i in (-2,2) for j in (-1,1) if 105>a+j>96 and 9>b+i>0]
+#     return sorted( set( c + chess_knight(c, moves-1) ) )
+
+
 if __name__ == '__main__':
     print("Example:")
     print('chess_knight - ', chess_knight('a1', 1))
