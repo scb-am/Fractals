@@ -32,6 +32,74 @@ class VoiceCommand:
         return "Yes" if channel in self.channels else "No"
 
 
+
+
+# from dataclasses import dataclass, field
+# from functools import singledispatchmethod, wraps
+# from typing import List
+# Channel = str
+#
+#
+# def _channel(method):
+#     @wraps(method)
+#     def _method(self, *args, **kwargs):
+#         method(self, *args, **kwargs)
+#         return self.channels[self.n % len(self.channels)]
+#     return _method
+#
+#
+# def _bool2text(method):
+#     @wraps(method)  # Necessary to keep annotations for singledispatchmethod.
+#     def _method(self, *args, **kwargs):
+#         return 'Yes' if method(self, *args, **kwargs) else 'No'
+#     return _method
+#
+#
+# @dataclass
+# class VoiceCommand:
+#     channels: List[Channel] = field(default_factory=list)
+#     n: int = 0
+#
+#     @_channel
+#     def first_channel(self) -> Channel:
+#         self.n = 0
+#
+#     @_channel
+#     def last_channel(self) -> Channel:
+#         self.n = -1
+#
+#     @_channel
+#     def turn_channel(self, n: int) -> Channel:
+#         self.n = n - 1
+#
+#     @_channel
+#     def next_channel(self) -> Channel:
+#         self.n += 1
+#
+#     @_channel
+#     def previous_channel(self) -> Channel:
+#         self.n -= 1
+#
+#     @_channel
+#     def current_channel(self) -> Channel:
+#         pass
+#
+#     @singledispatchmethod
+#     @_bool2text
+#     def is_exist(self, *args, **kwargs):
+#         return False
+#
+#     @is_exist.register
+#     @_bool2text
+#     def _(self, n: int) -> str:
+#         return 0 <= n - 1 < len(self.channels)
+#
+#     @is_exist.register
+#     @_bool2text
+#     def _(self, channel: Channel) -> str:
+#         return channel in self.channels
+
+
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
 
