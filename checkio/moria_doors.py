@@ -26,6 +26,41 @@
         )]
 
 
+# import re
+#
+# def getscore(word1, word2):
+#     first = 10 if word1[0] == word2[0] else 0
+#     last = 10 if word1[-1] == word2[-1] else 0
+#     length = 30 * min(len(word1) / len(word2), len(word2) / len(word1))
+#     unique = 50 * len(set(word1) & set(word2)) / len(set(word1) | set(word2))
+#     return first + last + length + unique
+#
+# def find_word(message):
+#     words = re.findall('[a-z]+', message.lower())[::-1]
+#     return max(words, key = lambda w: sum(getscore(w, x) for x in words))
+
+
+# def find_word(message):
+#     def f(s1, s2):
+#         point = 10 * ((s1[0] == s2[0]) + (s1[-1] == s2[-1]))
+#         point += 30 * min(len(s1), len(s2)) / max(len(s1), len(s2))
+#         point += 50 * len(set(s1) & set(s2)) / len(set(s1 + s2))
+#         return point
+#
+#     m = ''.join(c if c.islower() else ' ' for c in message.lower()).split()
+#     score = {}
+#     for i, w1 in enumerate(m):
+#         score[i] = sum(f(w1, w2) for j, w2 in enumerate(m) if i != j)
+#     return m[max(reversed(range(len(m))), key=score.get)]
+
+
+# def find_word(m):
+#     def likeness(*a):
+#         (w,W), (l,L), (s,S) = a, sorted(map(len, a)), map(set, a)
+#         return (w[0]==W[0]) + (w[-1]==W[-1]) + 3*l/L + 5*len(s&S)/len(s|S)
+#     ws = [w.strip(__import__("string").punctuation) for w in m.lower().split()]
+#     return max(reversed(ws), key=lambda w:sum(likeness(w, W) for W in ws))
+
 
 if __name__ == '__main__':
     #These "asserts" using only for self-checking and not necessary for auto-testing
