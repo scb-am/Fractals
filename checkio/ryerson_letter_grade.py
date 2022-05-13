@@ -21,6 +21,19 @@ def ryerson_letter_grade(pct: int) -> str:
     }.items() if int(v[0]) <= pct <= int(v[1])][:1] or [None])[0] or "F") if pct < 90 else "A+"
 
 
+# GRADE = ['F']*50 + ['D-']*3 + ['D']*4  + ['D+']*3 + ['C-']*3 + \
+#         ['C']*4  + ['C+']*3 + ['B-']*3 + ['B']*4  + ['B+']*3 + \
+#         ['A-']*5 + ['A']*5  + ['A+']*11
+#
+# ryerson_letter_grade = lambda percent: GRADE[min(percent, 100)]
+
+
+# LETTERS = [ch + sign for ch in 'ABCD' for sign in ('+','','-')] + ['F']
+# MIN_PERCENTAGES = [90, 85, 80, 77, 73, 70, 67, 63, 60, 57, 53, 50, 0]
+#
+# ryerson_letter_grade = lambda pct: next(ch for ch, p in zip(LETTERS, MIN_PERCENTAGES) if pct >= p)
+
+
 print(ryerson_letter_grade(54))
 print(ryerson_letter_grade(45))
 print(ryerson_letter_grade(107))
