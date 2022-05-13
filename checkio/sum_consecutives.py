@@ -2,6 +2,10 @@ from itertools import groupby
 
 sum_consecutives = lambda x: [sum(list(g)) for k, g in groupby(x)]
 
+
+# def sum_consecutives(seq):
+#     return [sum(g) for _, g in groupby(seq)]
+
 if __name__ == '__main__':
     print("Example:")
     print(list(sum_consecutives([1, 1, 1, 1])))
