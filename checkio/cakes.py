@@ -19,6 +19,20 @@ def checkio(cakes):
     return len([x for x in lines.values() if x >= 3])
 
 
+# from itertools import combinations
+#
+# def L(x, y, z):   # Checks if three points are colinear
+#     return (y[0]-x[0])*(z[1]-x[1]) == (y[1]-x[1])*(z[0]-x[0])
+#
+# def checkio(cakes):
+#     rows = set()
+#     for p, q in combinations(cakes, 2):
+#         colinear = frozenset(tuple(r) for r in cakes if L(p, q, r))
+#         if len(colinear) > 2:
+#             rows.add(colinear)
+#     return len(rows)
+
+
 if __name__ == '__main__':
     assert checkio([[3, 3], [5, 5], [8, 8], [2, 8], [8, 2]]) == 2
     assert checkio(
