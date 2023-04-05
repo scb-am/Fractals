@@ -20,3 +20,13 @@ assert (
     == "[[1, 1, -1, 1, 1],\n [1, 1,  1, 1, 1],\n [1, 1,  1, 1, 1]]"
 )
 
+
+"""
+def list_beautify(data: list[list[int]]) -> str:
+    # your code here
+    
+    lens = [len(str(max(x, key=lambda x: len(str(x))))) for x in zip(*data)]
+    
+    return '[[' + '],\n ['.join(', '.join(f'{col:>{l}}' for col, l in zip(row, lens)) for row in data) + ']]'
+"""
+
