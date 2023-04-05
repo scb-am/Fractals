@@ -19,3 +19,25 @@ assert completely_empty([[],[1]]) == False, "Sixth"
 assert completely_empty([0]) == False, "[0]"
 assert completely_empty(['']) == True
 assert completely_empty([[],[{'':'No WAY'}]]) == True
+
+
+"""
+def completely_empty(val):
+    try:
+        return all(map(completely_empty, val))
+    except:
+        return False
+"""
+
+"""
+def completely_empty(val):
+    return all(getattr(e, '__iter__', None) and completely_empty(e) for e in val)
+"""
+
+"""
+import collections
+def completely_empty(data):
+    if not isinstance(data,collections.Iterable): return False
+    if isinstance(data,str) and data: return False
+    return all(completely_empty(e) for e in data)
+"""
